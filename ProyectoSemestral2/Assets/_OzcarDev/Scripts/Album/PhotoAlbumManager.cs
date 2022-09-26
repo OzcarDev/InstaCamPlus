@@ -16,7 +16,7 @@ public class PhotoAlbumManager : MonoBehaviour
     {
 	    if(Input.GetKeyDown(KeyCode.P))
 	    {
-	    	LoadScene.LoadNextScene("Prueba");
+	    	LoadScene.LoadNextScene("Game");
 	    }
     }
 }

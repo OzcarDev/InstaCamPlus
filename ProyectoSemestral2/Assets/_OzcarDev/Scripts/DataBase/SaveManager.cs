@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveManager 
 {
-    public static void SavePlayerData()
+	public static void SavePlayerData(Move player)
     {
-        PlayerData playerData = new PlayerData();
+	    PlayerData playerData = new PlayerData(player);
         string dataPath = Application.persistentDataPath + "/game.save";
         FileStream fileStream = new FileStream(dataPath, FileMode.Create);
         BinaryFormatter binaryFormatter = new BinaryFormatter();

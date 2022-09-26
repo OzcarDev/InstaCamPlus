@@ -29,11 +29,15 @@ public class GameManager : MonoBehaviour
 	
     
 	public Transform player;
+	// Awake is called when the script instance is being loaded.
+	
+	
     void Start()
 	{
 		
 		player = GameObject.Find("Player").GetComponent<Transform>();
-	    messagesManager = GameObject.Find("MessagesManager").GetComponent<MessagesManager>();
+		messagesManager = GameObject.Find("MessagesManager").GetComponent<MessagesManager>();
+		Load();
 	    Draw();
     }
 
@@ -42,7 +46,7 @@ public class GameManager : MonoBehaviour
 	{
 		
 		if(Input.GetKeyDown(KeyCode.Q)&&Globals.playerKeys.Contains("PhotoAlbum")) NoteBook();
-		if(Input.GetKeyDown(KeyCode.P)&&Globals.playerKeys.Contains("PhotoAlbum")&&!isPaused) PhotoAlbum();
+		if(Input.GetKeyDown(KeyCode.P)&&Globals.playerKeys.Contains("PhotoAlbum")&&!isPaused) StartCoroutine(PhotoAlbum());
 
         if (Input.GetKeyDown(KeyCode.Escape)) Pause();
 
@@ -58,14 +62,12 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
     }
     
-	public void PhotoAlbum(){
-		Globals.position[0] = player.position.x;
-		Globals.position[1] = player.position.y;
-		Globals.position[2] = player.position.z;
+	IEnumerator PhotoAlbum(){
 		
-		Globals.rotation[0] = player.rotation.x;
-		Globals.rotation[1] = player.rotation.y;
-		Globals.rotation[2] = player.rotation.z;
+		SaveManager.SavePlayerData(player.gameObject.GetComponent<Move>());
+		Debug.Log("DatosGuardados");
+		yield return new WaitForEndOfFrame();
+		
 		LoadScene.LoadNextScene("PhotoAlbum");
 	}
 
@@ -142,30 +144,20 @@ public class GameManager : MonoBehaviour
 	
    
 
-    public void Save()
-	{/*
-       if (Input.GetKeyDown(KeyCode.G))
-        {
-            SaveManager.SavePlayerData();
-            Debug.Log("DatosGuardados");
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
+	public void Load()
+	{
+		
+      
             PlayerData playerData = SaveManager.LoadPlayerData();
 
             if (playerData == null) return;
-                
+	        Globals.playerKeys=playerData.playerKeys;
+	        Globals.ToDoList = playerData.ToDoList;
+		player.position = new Vector3(playerData.positionX,playerData.positionY,playerData.positionZ);
             Debug.Log("DatosCargados");
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            SaveManager.DeletePlayerData();
-            Debug.Log("DatosBorrados");
-		}*/
+        
+		
 	}
-    
 
 
 }

@@ -1,24 +1,29 @@
-﻿
+﻿using System.Collections;
+using System.Collections.Generic;
 [System.Serializable]
 public class PlayerData 
 {
-  
-	float positionX;
-	float positionY;
-	float positionZ;
 	
-	float rotationX;
-	float rotationY;
-	float rotationZ;
+	public List<string> playerKeys = new List<string>();
+	
+	public List<string> ToDoList = new List<string>();
+	//Posición
+	public float positionX;
+	public float positionY;
+	public float positionZ;
+	//Rotación
+	public float rotationX;
+	public float rotationY;
+	public float rotationZ;
 
-    public PlayerData()
-    {
-	    positionX=Globals.position[0];
-	    positionY=Globals.position[1];
-	    positionZ=Globals.position[2];
+	public PlayerData(Move player)
+	{
+		playerKeys = Globals.playerKeys;
+		ToDoList=Globals.ToDoList;
+		positionX=player.gameObject.transform.position.x;
+		positionY=player.gameObject.transform.position.y;
+		positionZ=player.gameObject.transform.position.z;
 		
-	    rotationX=Globals.rotation[0];
-	    rotationY=Globals.rotation[1];
-	    rotationZ=Globals.rotation[2];
+	  
     }
 }

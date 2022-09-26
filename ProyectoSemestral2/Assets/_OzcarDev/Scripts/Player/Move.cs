@@ -39,8 +39,10 @@ using UnityEngine;
         public State _State;
 
 	    private bool isTeleporting=false;
+	   
         void Start()
 	    {
+	    	
 		    rigidbody = GetComponent<Rigidbody>();
             Globals.playerKeys.Add("");
             speed = maxSpeed;
@@ -50,7 +52,7 @@ using UnityEngine;
             cam = transform.Find("Camera");
 	        Cursor.lockState = CursorLockMode.Locked;
             
-	        InitializeValues();
+	        
 
             normalScale = transform.localScale;
             crouchScale = normalScale;
@@ -60,12 +62,8 @@ using UnityEngine;
 	        
         }
 
-	    void InitializeValues(){
 	   
-	    	
-	    	transform.position = new Vector3( Globals.position[0],Globals.position[1],Globals.position[2]);
-	    	
-	    }
+	   
         // Update is called once per frame
         void Update()
 	    {
