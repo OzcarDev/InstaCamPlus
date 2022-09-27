@@ -1,13 +1,15 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PhotoCard : MonoBehaviour
 {
     
     public string name;
+	public TextMeshPro title;
     
-    IEnumerator Start()
+	public IEnumerator Start()
     {
         WWW www = new WWW (Application.persistentDataPath + "_" + name + ".png");
 
@@ -18,13 +20,8 @@ public class PhotoCard : MonoBehaviour
         if(sampleTexture != null)
             gameObject.GetComponent<MeshRenderer>().material.SetTexture("_MainTex", sampleTexture);
 
-       
+	    title.text = name;
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
