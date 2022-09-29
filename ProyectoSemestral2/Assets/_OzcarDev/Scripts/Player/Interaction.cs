@@ -50,6 +50,11 @@ namespace com.OzcarDev.WalkingSim
                         Destroy(hit.transform.gameObject);
                         
                     }
+                    
+	           if(hit.transform.gameObject.GetComponent<NPC>()!=null)
+	           {
+		           hit.transform.gameObject.GetComponent<NPC>().LookAtMe();	
+	           }
            }
 
             }
@@ -60,6 +65,11 @@ namespace com.OzcarDev.WalkingSim
                 Globals.currentObjective = null;
             }
        
+       } else
+       {
+	       gameManager.panelGamePlay.GetComponent<Animator>().Play("normalCursor");
+	       objectText.text = "";
+	       Globals.currentObjective = null;
        }
             
     }
