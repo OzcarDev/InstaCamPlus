@@ -50,7 +50,7 @@ using UnityEngine;
             gameManager = GameObject.Find("GameManager").GetComponent <GameManager> ();
             characterController = GetComponent<CharacterController>();
             cam = transform.Find("Camera");
-	        Cursor.lockState = CursorLockMode.Locked;
+	       
             
 	        
 
@@ -69,7 +69,7 @@ using UnityEngine;
 	    {
 		   
 
-		    if (gameManager.isPaused||gameManager.readingMode||isTeleporting) return;
+		    if (gameManager.isPaused||gameManager.readingMode||isTeleporting||gameManager.photoAlbumMode) return;
 		    
             RotateMouse();
 		    Movement();

@@ -11,7 +11,7 @@ public class PhotoCard : MonoBehaviour
     
 	public IEnumerator Start()
     {
-        WWW www = new WWW (Application.persistentDataPath + "_" + name + ".png");
+	    WWW www = new WWW (Application.persistentDataPath + "/fotos/"+ "_" + name + ".png");
 
         while (!www.isDone)
             yield return null;

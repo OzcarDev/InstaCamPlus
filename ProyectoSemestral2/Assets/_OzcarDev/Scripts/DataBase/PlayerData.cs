@@ -6,7 +6,8 @@ public class PlayerData
 	
 	public List<string> playerKeys = new List<string>();
 	
-	public List<string> ToDoList = new List<string>();
+	public List<string> House = new List<string>();
+	public List<string> Extras = new List<string>();
 	//Posición
 	public float positionX;
 	public float positionY;
@@ -19,7 +20,8 @@ public class PlayerData
 	public PlayerData(Move player)
 	{
 		playerKeys = Globals.playerKeys;
-		ToDoList=Globals.ToDoList;
+		House=Globals.House;
+		Extras = Globals.Extras;
 		positionX=player.gameObject.transform.position.x;
 		positionY=player.gameObject.transform.position.y;
 		positionZ=player.gameObject.transform.position.z;

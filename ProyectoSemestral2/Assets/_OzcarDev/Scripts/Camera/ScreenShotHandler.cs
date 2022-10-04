@@ -37,7 +37,7 @@ public class ScreenShotHandler : MonoBehaviour
             renderResult.ReadPixels(rect, 0, 0);
 
             byte[] byteArray = renderResult.EncodeToPNG();
-            System.IO.File.WriteAllBytes(Application.persistentDataPath +"_"+Globals.currentObjective+".png", byteArray);
+	        System.IO.File.WriteAllBytes(Application.persistentDataPath +"/fotos/"+"_"+Globals.currentObjective+".png", byteArray);
 	        Debug.Log("ScreenShot");
 	        
 	        if(Globals.playerKeys.Contains("PhotoAlbum"))

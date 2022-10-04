@@ -7,12 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public bool isPaused;
     public bool photoMode;
-    public bool readingMode;
+	public bool readingMode;
+	public bool photoAlbumMode = false;
 
     public GameObject panelPhotoMode;
     public GameObject panelGamePlay;
-    public GameObject panelText;
-
+	public GameObject panelText;
+	
     MessagesManager messagesManager;
     
 	public TextMeshProUGUI noteBooK;
@@ -29,16 +30,17 @@ public class GameManager : MonoBehaviour
 	
     
 	public Transform player;
-	// Awake is called when the script instance is being loaded.
-	
-	
+    // Awake is called when the script instance is being loaded.
+   
+
     void Start()
 	{
-		
+		photoAlbumMode = false;
 		player = GameObject.Find("Player").GetComponent<Transform>();
 		messagesManager = GameObject.Find("MessagesManager").GetComponent<MessagesManager>();
 		Load();
-	    Draw();
+		Draw();
+		Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -46,7 +48,7 @@ public class GameManager : MonoBehaviour
 	{
 		
 		if(Input.GetKeyDown(KeyCode.Q)&&Globals.playerKeys.Contains("PhotoAlbum")) NoteBook();
-		if(Input.GetKeyDown(KeyCode.P)&&Globals.playerKeys.Contains("PhotoAlbum")&&!isPaused) StartCoroutine(PhotoAlbum());
+		if(Input.GetKeyDown(KeyCode.P)&&Globals.playerKeys.Contains("PhotoAlbum")&&!isPaused&&!readingMode) PhotoAlbum();
 
         if (Input.GetKeyDown(KeyCode.Escape)) Pause();
 
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour
         {
             PhotoMode();
         }
+        
+		
 
     }
 
@@ -62,13 +66,24 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
     }
     
-	IEnumerator PhotoAlbum(){
-		
-		SaveManager.SavePlayerData(player.gameObject.GetComponent<Move>());
-		Debug.Log("DatosGuardados");
-		yield return new WaitForEndOfFrame();
-		
-		LoadScene.LoadNextScene("PhotoAlbum");
+     void PhotoAlbum(){
+	   
+	     
+		 SaveManager.SavePlayerData(player.gameObject.GetComponent<Move>());
+		 
+	     if(photoAlbumMode){
+		     player.gameObject.GetComponentInChildren<Camera>().depth = 1;
+		     Cursor.lockState = CursorLockMode.Locked;
+		     panelGamePlay.SetActive(true);
+		     panelPhotoMode.SetActive(true);
+	     } 		else{
+		     
+		     player.gameObject.GetComponentInChildren<Camera>().depth = -1;
+		     Cursor.lockState = CursorLockMode.None;
+		     panelGamePlay.SetActive(false);
+		     panelPhotoMode.SetActive(false);
+	     }
+	     photoAlbumMode = !photoAlbumMode;
 	}
 
 	public void NoteBook(){
@@ -89,27 +104,43 @@ public class GameManager : MonoBehaviour
 	public void Draw()
 	{
 		noteBooK.text="";
-		for(int i=0;i<=Globals.ToDoList.Count-1;i++)
+		if(Globals.House==null)return;
+		for(int i=0;i<=Globals.House.Count-1;i++)
 		{
-			noteBooK.text+="-"+Globals.ToDoList[i]+"\n";
+			noteBooK.text+="-"+Globals.House[i]+"\n";
 		    
 		}
 	}
 
     public void ToDoList()
     {
-        for(int i=0; i < Globals.ToDoList.Count; i++)
+	    for(int i=0; i < Globals.House.Count; i++)
         {
         	
-	        if (Globals.currentObjective == Globals.ToDoList[i])
+	        if (Globals.currentObjective == Globals.House[i])
             {
 		        
-		        Globals.ToDoList.Remove(Globals.currentObjective);
+		        Globals.House.Remove(Globals.currentObjective);
 		        adviceContent.text = "New Photo Album Entry" + " \""+Globals.currentObjective+"\"";
 		        advice.StopPlayback();
 		        advice.Play("Show");
             }
         }
+        
+	    for(int i=0; i < Globals.Extras.Count; i++)
+	    {
+        	
+		    if (Globals.currentObjective == Globals.Extras[i])
+		    {
+		        
+			    Globals.Extras.Remove(Globals.currentObjective);
+			    adviceContent.text = "New Photo Album Entry" + " \""+Globals.currentObjective+"\"";
+			    advice.StopPlayback();
+			    advice.Play("Show");
+		    }
+	    }
+        
+	    
     }
 
 
@@ -152,7 +183,9 @@ public class GameManager : MonoBehaviour
 
             if (playerData == null) return;
 	        Globals.playerKeys=playerData.playerKeys;
-	        Globals.ToDoList = playerData.ToDoList;
+		
+		Globals.House = playerData.House;
+		Globals.Extras = playerData.Extras;
 		player.position = new Vector3(playerData.positionX,playerData.positionY,playerData.positionZ);
             Debug.Log("DatosCargados");
         

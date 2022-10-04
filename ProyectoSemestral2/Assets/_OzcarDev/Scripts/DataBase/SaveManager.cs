@@ -27,13 +27,21 @@ public static class SaveManager
         }
         else
         {
-            Debug.Log("No hay datos guardados");
+	        Debug.Log("No hay datos guardados");
+	        if (!(Directory.Exists(Application.persistentDataPath + "/fotos")))
+	        {
+		        Directory.CreateDirectory(Application.persistentDataPath + "/fotos");
+		        Debug.Log("Crear carpeta");
+	        }
+
             return null;
         }
     }
 
     public static void DeletePlayerData()
     {
-        System.IO.File.Delete(Application.persistentDataPath + "/game.save");
+	    System.IO.File.Delete(Application.persistentDataPath + "/game.save");
+	    Directory.Delete(Application.persistentDataPath+"/fotos");
     }
 }
+

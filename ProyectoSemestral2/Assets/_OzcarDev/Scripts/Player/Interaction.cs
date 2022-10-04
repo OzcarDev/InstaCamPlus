@@ -18,19 +18,56 @@ namespace com.OzcarDev.WalkingSim
     // Update is called once per frame
     void Update()
     {
-            
-            CheckInteraction();
+	    if(gameManager.photoMode){
+		    CheckPhoto();
+	    	
+	    } else{
+	    CheckInteraction();
+	    }
     }
+    
+	void CheckPhoto()
+	{
+		
+		RaycastHit hit;
+		var ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f));
+		if (Physics.Raycast(ray, out hit, 100,layerMask))
+		{
+			if(hit.transform.gameObject.tag== "Interaction"){
+				
+
+				gameManager.panelPhotoMode.GetComponent<Animator>().Play("bigCursor");
+				objectText.text = hit.transform.gameObject.name;
+				Globals.currentObjective = hit.transform.gameObject.name;
+
+			   
+
+			}
+			else
+			{
+				
+				gameManager.panelPhotoMode.GetComponent<Animator>().Play("normalCursor");
+				objectText.text = "";
+				Globals.currentObjective = null;
+			}
+       
+		} else
+		{
+			gameManager.panelPhotoMode.GetComponent<Animator>().Play("normalCursor");
+			objectText.text = "";
+			Globals.currentObjective = null;
+		}
+	}
        
     void CheckInteraction()
     {
        RaycastHit hit;
        var ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .4f));
-
+     
        if (Physics.Raycast(ray, out hit, 5, layerMask))
        {
        	if(hit.transform.gameObject.tag== "Interaction"){
-
+	       	
                 gameManager.panelGamePlay.GetComponent<Animator>().Play("bigCursor");
                 objectText.text = hit.transform.gameObject.name;
                 Globals.currentObjective = hit.transform.gameObject.name;
@@ -59,7 +96,8 @@ namespace com.OzcarDev.WalkingSim
 
             }
             else
-            {
+       	{
+            	
                 gameManager.panelGamePlay.GetComponent<Animator>().Play("normalCursor");
                 objectText.text = "";
                 Globals.currentObjective = null;

@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_OzcarDev/Scenes/Prueba.unity
     guid: 89f11d6aec6a3e844b655c3764e15430
+  - enabled: 1
+    path: Assets/_OzcarDev/Scenes/Game.unity
+    guid: 1d6e977bbc589ba4d8b857a7b437c1ce
   - enabled: 1
     path: Assets/_OzcarDev/Scenes/PhotoAlbum.unity
     guid: 4dc937ef7e8f03b4ea820a29bd820d9d

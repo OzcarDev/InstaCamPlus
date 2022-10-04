@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4523613676796226953}
   m_Layer: 7
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 4523613678648172571}
   m_Layer: 0
   m_Name: DoorContainer
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -8,13 +8,18 @@ public class Globals
   public static string currentObject;
   public static string currentObjective;
 
-    public static List<string> ToDoList = new List<string>() 
+
+	public static List<string> House = new List<string>() 
     { 
-	    "Arcade","Drum Set","Computer"    
+	    "Batería","Pecera","Oso","Ajedrez","Pastel de cumpleaños","Pato Amarillo","Carrito","Moto Sierra"    
     
     };
     
-	
+	public static List<string> Extras = new List<string>() 
+	{ 
+		"Mancuernas","Automóvil","La chica de la perla","Caballero Hueco","Submarino Amarillo","Radio","Video Consola"
+    
+    };
 	
 	
 	

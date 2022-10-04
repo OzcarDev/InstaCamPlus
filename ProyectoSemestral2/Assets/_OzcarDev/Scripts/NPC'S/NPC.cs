@@ -18,7 +18,7 @@ public class NPC : MonoBehaviour
 	// Update is called every frame, if the MonoBehaviour is enabled.
 	protected void Update()
 	{
-		Debug.Log(rotate);
+		
 		if(!gameManager.readingMode)
 		{
 			rotate = false;

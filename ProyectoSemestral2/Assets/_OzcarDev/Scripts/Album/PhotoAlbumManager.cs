@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class PhotoAlbumManager : MonoBehaviour
 {
-	// Start is called before the first frame update
+	public GameObject[] pages;
 	
-    void Start()
-    {
-	    Cursor.lockState=CursorLockMode.None; 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-	    if(Input.GetKeyDown(KeyCode.P))
-	    {
-	    	LoadScene.LoadNextScene("Game");
-	    }
-    }
+	public void ChangePage(int page){
+		for(int i = 0; i<= pages.Length-1;i++){
+			if(i==page){
+				pages[i].SetActive(true);
+			}
+			else{
+				pages[i].SetActive(false);
+			}
+		}
+		
+	}
+	
 }

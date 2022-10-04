@@ -8,11 +8,15 @@ public class  InteractMenu: MonoBehaviour,IPointerEnterHandler, IPointerExitHand
 	public Animator anim;
 	public float obset;
 	private float inicialPosition;
-	
-	public GameObject active;
-	public GameObject deactive;
+	public int index;
 	public bool isPhotocard;
+	PhotoAlbumManager manager;
 	
+	// Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
+	protected void Start()
+	{
+		manager = GameObject.Find("PhotoAlbumManager").GetComponent<PhotoAlbumManager>();
+	}
 	public void OnPointerEnter(PointerEventData pointerEventData)
 	{
 		if(anim==null)return;
@@ -40,16 +44,11 @@ public class  InteractMenu: MonoBehaviour,IPointerEnterHandler, IPointerExitHand
 			
 		}
 		
-		if(active==null||deactive==null) return;
-		ActivePanels();
-		
+		else{
+			manager.ChangePage(index);
+		}
 	}
 	
 	
-	public void ActivePanels()
-	{
-		deactive.SetActive(false);
-		active.SetActive(true);
-	}
 	
 }
