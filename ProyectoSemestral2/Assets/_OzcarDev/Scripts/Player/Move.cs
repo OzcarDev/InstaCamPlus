@@ -5,7 +5,8 @@ using UnityEngine;
 
     public class Move : MonoBehaviour
     {
-        // Movement
+	    // Movement
+	    public Settings settings;
 	    CharacterController characterController;
 	    Rigidbody rigidbody;
         private float x;
@@ -83,10 +84,13 @@ using UnityEngine;
         void RotateMouse()
 	    {
 		  
-            inputRot.x = Input.GetAxis("Mouse X") * sensibility;
-            inputRot.y = Input.GetAxis("Mouse Y") * sensibility;
+		    inputRot.x = Input.GetAxis("Mouse X") * sensibility*settings.mouseSensitivity;
+		    if(settings.invert_y_axis) 
+			    inputRot.y = Input.GetAxis("Mouse Y") * sensibility*settings.mouseSensitivity*-1;
+		    if(!settings.invert_y_axis) 
+			    inputRot.y = Input.GetAxis("Mouse Y") * sensibility*settings.mouseSensitivity;
             
-            transform.Rotate(Vector3.up*inputRot.x*sensibility);
+            transform.Rotate(Vector3.up*inputRot.x*sensibility*settings.mouseSensitivity);
 
             float angle = (cam.localEulerAngles.x - inputRot.y * sensibility+360)%360;
 

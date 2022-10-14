@@ -5,8 +5,16 @@ using UnityEngine;
 public class PhotoAlbumManager : MonoBehaviour
 {
 	public GameObject[] pages;
+	int page;
 	
-	public void ChangePage(int page){
+	public void ChangePage(int newPage){
+		
+		page = newPage;
+	}
+	
+	// Update is called every frame, if the MonoBehaviour is enabled.
+	protected void Update()
+	{
 		for(int i = 0; i<= pages.Length-1;i++){
 			if(i==page){
 				pages[i].SetActive(true);
@@ -17,5 +25,22 @@ public class PhotoAlbumManager : MonoBehaviour
 		}
 		
 	}
+	
+	public void NextPage() 
+	{
+		page ++;
+		if(page>pages.Length-1){
+			page = pages.Length-1;
+		}
+	}
+	
+	public void PrevPage(){
+		page--;
+		if(page<0){
+			page = 0;
+		}
+	}
+	
+	
 	
 }

@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
     public GameObject panelPhotoMode;
     public GameObject panelGamePlay;
 	public GameObject panelText;
+	public GameObject Flash;
 	
     MessagesManager messagesManager;
     
+	public GameObject Album;
 	public TextMeshProUGUI noteBooK;
 	public Animator block;
 	public Animator advice;
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape)) Pause();
 
-        if (Input.GetButtonDown("Camera")&&!isPaused&&!readingMode&&Globals.playerKeys.Contains("Camera"))
+		if (Input.GetButtonDown("Camera")&&!isPaused&&!readingMode&&Globals.playerKeys.Contains("Camera")&&!photoAlbumMode)
         {
             PhotoMode();
         }
@@ -69,19 +71,23 @@ public class GameManager : MonoBehaviour
      void PhotoAlbum(){
 	   
 	     
-		 SaveManager.SavePlayerData(player.gameObject.GetComponent<Move>());
+	     // SaveManager.SavePlayerData(player.gameObject.GetComponent<Move>());
 		 
 	     if(photoAlbumMode){
 		     player.gameObject.GetComponentInChildren<Camera>().depth = 1;
 		     Cursor.lockState = CursorLockMode.Locked;
 		     panelGamePlay.SetActive(true);
 		     panelPhotoMode.SetActive(true);
+		     photoMode = !photoMode;
+		     PhotoMode();
+		     Album.SetActive(false);
 	     } 		else{
 		     
 		     player.gameObject.GetComponentInChildren<Camera>().depth = -1;
 		     Cursor.lockState = CursorLockMode.None;
 		     panelGamePlay.SetActive(false);
 		     panelPhotoMode.SetActive(false);
+		     Album.SetActive(true);
 	     }
 	     photoAlbumMode = !photoAlbumMode;
 	}

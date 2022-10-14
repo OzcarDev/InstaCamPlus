@@ -10,7 +10,7 @@ public class ScreenShotHandler : MonoBehaviour
     private bool takeScreenShotOnNextFrame;
     private Camera myCamera;
     GameManager gameManager;
-
+    
 
     void Awake()
     {
@@ -48,7 +48,8 @@ public class ScreenShotHandler : MonoBehaviour
 	        	
 	        }
 	        
-	        gameManager.panelPhotoMode.GetComponent<Animator>().Play("Flash");
+	        gameManager.Flash.GetComponent<Animator>().Play("Idle");
+	        gameManager.Flash.GetComponent<Animator>().Play("Flash");
             RenderTexture.ReleaseTemporary(renderTexture);
             
             myCamera.targetTexture = null;

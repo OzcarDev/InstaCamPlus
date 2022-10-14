@@ -14,7 +14,14 @@ public static class SaveManager
     }
 
     public static PlayerData LoadPlayerData()
-    {
+	{
+		if (!(Directory.Exists(Application.persistentDataPath + "/fotos")))
+		{
+			Directory.CreateDirectory(Application.persistentDataPath + "/fotos");
+			Debug.Log("Crear carpeta");
+		}
+		
+	
         string dataPath = Application.persistentDataPath + "/game.save";
 
         if (File.Exists(dataPath))
@@ -28,11 +35,7 @@ public static class SaveManager
         else
         {
 	        Debug.Log("No hay datos guardados");
-	        if (!(Directory.Exists(Application.persistentDataPath + "/fotos")))
-	        {
-		        Directory.CreateDirectory(Application.persistentDataPath + "/fotos");
-		        Debug.Log("Crear carpeta");
-	        }
+	       
 
             return null;
         }
