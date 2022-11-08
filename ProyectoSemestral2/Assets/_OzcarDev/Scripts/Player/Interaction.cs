@@ -88,6 +88,12 @@ namespace com.OzcarDev.WalkingSim
                         
                     }
                     
+	           if (hit.transform.gameObject.GetComponent<PlaySound>() != null)
+	           {
+		           hit.transform.gameObject.GetComponent<PlaySound>().Sound();
+                        
+	           }
+                    
 	           if(hit.transform.gameObject.GetComponent<NPC>()!=null)
 	           {
 		           hit.transform.gameObject.GetComponent<NPC>().LookAtMe();	

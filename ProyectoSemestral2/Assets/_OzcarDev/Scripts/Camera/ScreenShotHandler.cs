@@ -50,6 +50,7 @@ public class ScreenShotHandler : MonoBehaviour
 	        
 	        gameManager.Flash.GetComponent<Animator>().Play("Idle");
 	        gameManager.Flash.GetComponent<Animator>().Play("Flash");
+	        AudioManager.Instance.PlaySFX("Photo");
             RenderTexture.ReleaseTemporary(renderTexture);
             
             myCamera.targetTexture = null;

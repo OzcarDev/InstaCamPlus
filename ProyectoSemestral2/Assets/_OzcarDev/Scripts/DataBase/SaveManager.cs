@@ -44,7 +44,7 @@ public static class SaveManager
     public static void DeletePlayerData()
     {
 	    System.IO.File.Delete(Application.persistentDataPath + "/game.save");
-	    Directory.Delete(Application.persistentDataPath+"/fotos");
+	    System.IO.Directory.Delete(Application.persistentDataPath+"/fotos",true);
     }
 }
 

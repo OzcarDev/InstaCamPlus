@@ -8,11 +8,17 @@ public class NPC : MonoBehaviour
    
 	GameManager gameManager;
 	bool rotate = false;
+	public bool Sit;
+	public bool Lay;
 	// Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
 	protected void Start()
 	{
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		target = GameObject.FindGameObjectWithTag("Player").transform;
+		if(Sit){
+			gameObject.GetComponent<Animator>().Play("Sit");
+		}
+		
 	}
 	
 	// Update is called every frame, if the MonoBehaviour is enabled.
@@ -22,6 +28,10 @@ public class NPC : MonoBehaviour
 		if(!gameManager.readingMode)
 		{
 			rotate = false;
+			if(Sit){	
+				
+				gameObject.GetComponent<Animator>().CrossFade("Sit",0.3f);
+			}
 		}
 		
 		if(rotate) {
@@ -36,7 +46,7 @@ public class NPC : MonoBehaviour
 	
 	public void LookAtMe()
 	{
-	 
+		if(Lay) return;
 		
 		rotate = true;
 	}

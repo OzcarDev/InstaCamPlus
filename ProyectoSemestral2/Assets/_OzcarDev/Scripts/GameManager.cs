@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject panelGamePlay;
 	public GameObject panelText;
 	public GameObject Flash;
+	public GameObject mainMenu;
 	
     MessagesManager messagesManager;
     
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
 	public Animator block;
 	public Animator advice;
 	public TextMeshProUGUI adviceContent;
+	
+	
 	enum AnimState
 	{
 		On,
@@ -34,7 +37,7 @@ public class GameManager : MonoBehaviour
 	public Transform player;
     // Awake is called when the script instance is being loaded.
    
-
+	
     void Start()
 	{
 		photoAlbumMode = false;
@@ -65,7 +68,8 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        isPaused = !isPaused;
+	    isPaused = !isPaused;
+	    mainMenu.SetActive(isPaused);
     }
     
      void PhotoAlbum(){
@@ -110,28 +114,120 @@ public class GameManager : MonoBehaviour
 	public void Draw()
 	{
 		noteBooK.text="";
-		if(Globals.House==null)return;
+		if(Globals.House.Count>0){
+			noteBooK.text+="* Casa *"+"\n";
+			
 		for(int i=0;i<=Globals.House.Count-1;i++)
 		{
 			noteBooK.text+="-"+Globals.House[i]+"\n";
 		    
 		}
+		} else if(Globals.House.Count==0&&Globals.Restaurant.Count>0){
+			noteBooK.text+="*Restaurante*"+"\n";
+			for(int i=0;i<=Globals.Restaurant.Count-1;i++)
+			{
+				noteBooK.text+="-"+Globals.Restaurant[i]+"\n";
+		    
+			}
+		}else if(Globals.Restaurant.Count==0&&Globals.Park.Count>0){
+			noteBooK.text+="*Parque*"+"\n";
+			for(int i=0;i<=Globals.Park.Count-1;i++)
+			{
+				noteBooK.text+="-"+Globals.Park[i]+"\n";
+		    
+			}
+		}else if(Globals.Park.Count==0&&Globals.Station.Count>0){
+			noteBooK.text+="*Estación de Policia*"+"\n";
+			for(int i=0;i<=Globals.Station.Count-1;i++)
+			{
+				noteBooK.text+="-"+Globals.Station[i]+"\n";
+		    
+			}
+			
+			
+		}
+		else if(Globals.Station.Count==0&&Globals.Hospital.Count>0){
+			noteBooK.text+="*Hospital*"+"\n";
+			for(int i=0;i<=Globals.Hospital.Count-1;i++)
+			{
+				noteBooK.text+="-"+Globals.Hospital[i]+"\n";
+		    
+			}
+			
+			
+		}
+		
+		
+		
+		
 	}
 
     public void ToDoList()
-    {
-	    for(int i=0; i < Globals.House.Count; i++)
-        {
+	{
+		for(int i=0; i < Globals.House.Count; i++)
+		{
         	
-	        if (Globals.currentObjective == Globals.House[i])
-            {
+			if (Globals.currentObjective == Globals.House[i])
+			{
 		        
-		        Globals.House.Remove(Globals.currentObjective);
-		        adviceContent.text = "New Photo Album Entry" + " \""+Globals.currentObjective+"\"";
-		        advice.StopPlayback();
-		        advice.Play("Show");
-            }
-        }
+				Globals.House.Remove(Globals.currentObjective);
+				adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
+				advice.StopPlayback();
+				advice.Play("Show");
+			}
+		}
+		for(int i=0; i < Globals.Station.Count; i++)
+		{
+        	
+			if (Globals.currentObjective == Globals.Station[i])
+			{
+		        
+				Globals.Station.Remove(Globals.currentObjective);
+				adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
+				advice.StopPlayback();
+				advice.Play("Show");
+			}
+		}
+		for(int i=0; i < Globals.Park.Count; i++)
+		{
+        	
+			if (Globals.currentObjective == Globals.Park[i])
+			{
+		        
+				Globals.Park.Remove(Globals.currentObjective);
+				adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
+				advice.StopPlayback();
+				advice.Play("Show");
+			}
+		}
+		
+		for(int i=0; i < Globals.Restaurant.Count; i++)
+		{
+        	
+			if (Globals.currentObjective == Globals.Restaurant[i])
+			{
+		        
+				Globals.Restaurant.Remove(Globals.currentObjective);
+				adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
+				advice.StopPlayback();
+				advice.Play("Show");
+			}
+		}
+		
+	  
+        
+	    for(int i=0; i < Globals.Hospital.Count; i++)
+	    {
+        	
+		    if (Globals.currentObjective == Globals.Hospital[i])
+		    {
+		        
+			    Globals.Hospital.Remove(Globals.currentObjective);
+			    adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
+			    advice.StopPlayback();
+			    advice.Play("Show");
+		    }
+	    }
         
 	    for(int i=0; i < Globals.Extras.Count; i++)
 	    {
@@ -140,7 +236,7 @@ public class GameManager : MonoBehaviour
 		    {
 		        
 			    Globals.Extras.Remove(Globals.currentObjective);
-			    adviceContent.text = "New Photo Album Entry" + " \""+Globals.currentObjective+"\"";
+			    adviceContent.text = "Nuevo Secreto" + " \""+Globals.currentObjective+"\"";
 			    advice.StopPlayback();
 			    advice.Play("Show");
 		    }
@@ -192,10 +288,18 @@ public class GameManager : MonoBehaviour
 		
 		Globals.House = playerData.House;
 		Globals.Extras = playerData.Extras;
+		Globals.Hospital = playerData.Hospital;
+		Globals.Restaurant = playerData.Restaurant;
+		Globals.Park = playerData.Park;
+		Globals.Station = playerData.Station;
 		player.position = new Vector3(playerData.positionX,playerData.positionY,playerData.positionZ);
             Debug.Log("DatosCargados");
         
 		
+	}
+	
+	public void Save(){
+		SaveManager.SavePlayerData(player.gameObject.GetComponent<Move>());
 	}
 
 

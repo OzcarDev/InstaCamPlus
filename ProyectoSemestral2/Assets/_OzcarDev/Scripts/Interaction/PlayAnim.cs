@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,12 +37,14 @@ public class PlayAnim : MonoBehaviour
                 if (_AnimState == AnimState.On)
                 {
                     GetComponent<Animator>().CrossFade(StateB, .25f);
-                    _AnimState = AnimState.Off;
+	                _AnimState = AnimState.Off;
+	                AudioManager.Instance.PlaySFX(StateB);
                 }
                 else
                 {
                     GetComponent<Animator>().CrossFade(StateA, .25f);
-                    _AnimState = AnimState.On;
+	                _AnimState = AnimState.On;
+	                AudioManager.Instance.PlaySFX(StateA);
                 }
             }
             else
