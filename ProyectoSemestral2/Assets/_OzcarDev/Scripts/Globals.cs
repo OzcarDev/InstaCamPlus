@@ -38,29 +38,7 @@ public class Globals
 		"Moto Roja","Pato Policiaco","Silla de Dentista","Medicamentos","Fuente"
     
     };
-	/*
-	public static void Restart(){
-		playerKeys = null;
-		
-		
-		House = new List<string>() 
-		{ 
-			"Batería","Pecera","Oso","Ajedrez","Pastel de cumpleaños","Pato Amarillo","Carrito","Moto Sierra"    
-     
-        };
-        
-		Hospital = new List<string>() 
-		{ 
-			"Hospital"
-    };
-    
-		Extras = new List<string>() 
-		{ 
-			"Mancuernas","Automóvil","La chica de la perla","Caballero Hueco","Submarino Amarillo","Radio","Video Consola","Granjero","Hamburguesa Doble", "Cura", "Pavo", "Sushi","Sheriff"
-    
-    };
 	
-	}*/
 	
 	
 }

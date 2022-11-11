@@ -6,7 +6,27 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #63
+    second: {fileID: 2100000, guid: 28f5628b4cd0d0f48872457ff7e514c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aguion
+    second: {fileID: 2100000, guid: f1dbd0255d7c08244837560c7c33f246, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cara
+    second: {fileID: 2100000, guid: 407f9d7496e0af34a84f395319f4999f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: oscuridad maxima
+    second: {fileID: 2100000, guid: f18bcd48fbc6ce944b6cce108e5f5b9d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
