@@ -8,7 +8,9 @@ namespace com.OzcarDev.WalkingSim
 {
         public LayerMask layerMask;
         GameManager gameManager;
-       public TextMeshProUGUI objectText;
+	public TextMeshProUGUI objectText;
+	public TextMeshProUGUI objectText2;
+	public TextMeshProUGUI cameraObjectText;
         // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +35,12 @@ namespace com.OzcarDev.WalkingSim
 		var ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f));
 		if (Physics.Raycast(ray, out hit, 100,layerMask))
 		{
-			if(hit.transform.gameObject.tag== "Interaction"){
+			if(hit.transform.gameObject.tag== "Photo"||hit.transform.gameObject.tag== "Interaction"){
 				
 
-				gameManager.panelPhotoMode.GetComponent<Animator>().Play("bigCursor");
-				objectText.text = hit.transform.gameObject.name;
+				gameManager.lens.GetComponent<Animator>().Play("bigCursor");
+				cameraObjectText.text = hit.transform.gameObject.name;
+			
 				Globals.currentObjective = hit.transform.gameObject.name;
 
 			   
@@ -46,15 +49,17 @@ namespace com.OzcarDev.WalkingSim
 			else
 			{
 				
-				gameManager.panelPhotoMode.GetComponent<Animator>().Play("normalCursor");
-				objectText.text = "";
+				gameManager.lens.GetComponent<Animator>().Play("normalCursor");
+				cameraObjectText.text = "";
+			
 				Globals.currentObjective = null;
 			}
        
 		} else
 		{
-			gameManager.panelPhotoMode.GetComponent<Animator>().Play("normalCursor");
-			objectText.text = "";
+			gameManager.lens.GetComponent<Animator>().Play("normalCursor");
+			cameraObjectText.text = "";
+			
 			Globals.currentObjective = null;
 		}
 	}
@@ -66,10 +71,11 @@ namespace com.OzcarDev.WalkingSim
      
        if (Physics.Raycast(ray, out hit, 5, layerMask))
        {
-       	if(hit.transform.gameObject.tag== "Interaction"){
+       	if(hit.transform.gameObject.tag== "Interaction"||hit.transform.gameObject.tag=="Photo"){
 	       	
                 gameManager.panelGamePlay.GetComponent<Animator>().Play("bigCursor");
-                objectText.text = hit.transform.gameObject.name;
+	       	objectText.text = hit.transform.gameObject.name;
+	       	objectText2.text = hit.transform.gameObject.name;
                 Globals.currentObjective = hit.transform.gameObject.name;
 
            if (Input.GetButtonDown("Interaction") && !gameManager.readingMode&&!gameManager.photoMode)
@@ -105,7 +111,8 @@ namespace com.OzcarDev.WalkingSim
        	{
             	
                 gameManager.panelGamePlay.GetComponent<Animator>().Play("normalCursor");
-                objectText.text = "";
+	            objectText.text = "";
+	            objectText2.text = "";
                 Globals.currentObjective = null;
             }
        
@@ -113,6 +120,7 @@ namespace com.OzcarDev.WalkingSim
        {
 	       gameManager.panelGamePlay.GetComponent<Animator>().Play("normalCursor");
 	       objectText.text = "";
+	       objectText2.text = "";
 	       Globals.currentObjective = null;
        }
             

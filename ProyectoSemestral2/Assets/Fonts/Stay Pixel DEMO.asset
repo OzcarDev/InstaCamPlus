@@ -104,9 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Stay Pixel DEMO
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -541451596
   material: {fileID: -8860666003731842981}
-  materialHashCode: 0
+  materialHashCode: -871300332
   m_Version: 1.1.0
   m_SourceFontFileGUID: cf035632ad3e2314884ae222f16ce94c
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: cf035632ad3e2314884ae222f16ce94c, type: 3}

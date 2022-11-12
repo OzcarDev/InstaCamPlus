@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 	public bool readingMode;
 	public bool photoAlbumMode = false;
 
-    public GameObject panelPhotoMode;
+	public GameObject panelPhotoMode;
+	public GameObject lens;
     public GameObject panelGamePlay;
 	public GameObject panelText;
 	public GameObject Flash;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     
 	public GameObject Album;
 	public TextMeshProUGUI noteBooK;
+	public TextMeshProUGUI noteBookTitle;
 	public Animator block;
 	public Animator advice;
 	public TextMeshProUGUI adviceContent;
@@ -115,7 +117,7 @@ public class GameManager : MonoBehaviour
 	{
 		noteBooK.text="";
 		if(Globals.House.Count>0){
-			noteBooK.text+="* Casa *"+"\n";
+			noteBookTitle.text="Casa";
 			
 		for(int i=0;i<=Globals.House.Count-1;i++)
 		{
@@ -123,21 +125,21 @@ public class GameManager : MonoBehaviour
 		    
 		}
 		} else if(Globals.House.Count==0&&Globals.Restaurant.Count>0){
-			noteBooK.text+="*Restaurante*"+"\n";
+			noteBookTitle.text="Restaurante";
 			for(int i=0;i<=Globals.Restaurant.Count-1;i++)
 			{
 				noteBooK.text+="-"+Globals.Restaurant[i]+"\n";
 		    
 			}
 		}else if(Globals.Restaurant.Count==0&&Globals.Park.Count>0){
-			noteBooK.text+="*Parque*"+"\n";
+			noteBookTitle.text="Parque";
 			for(int i=0;i<=Globals.Park.Count-1;i++)
 			{
 				noteBooK.text+="-"+Globals.Park[i]+"\n";
 		    
 			}
 		}else if(Globals.Park.Count==0&&Globals.Station.Count>0){
-			noteBooK.text+="*Estación de Policia*"+"\n";
+			noteBookTitle.text="Estación";
 			for(int i=0;i<=Globals.Station.Count-1;i++)
 			{
 				noteBooK.text+="-"+Globals.Station[i]+"\n";
@@ -147,7 +149,7 @@ public class GameManager : MonoBehaviour
 			
 		}
 		else if(Globals.Station.Count==0&&Globals.Hospital.Count>0){
-			noteBooK.text+="*Hospital*"+"\n";
+			noteBookTitle.text="Hospital";
 			for(int i=0;i<=Globals.Hospital.Count-1;i++)
 			{
 				noteBooK.text+="-"+Globals.Hospital[i]+"\n";
@@ -252,7 +254,8 @@ public class GameManager : MonoBehaviour
         {
             
             panelGamePlay.SetActive(true); 
-            panelPhotoMode.GetComponent<Animator>().Play("FadeOut");
+	        panelPhotoMode.GetComponent<Animator>().Play("FadeOut");
+	        lens.GetComponent<Animator>().Play("FadeOut");
 
         }
         else if (!photoMode)
