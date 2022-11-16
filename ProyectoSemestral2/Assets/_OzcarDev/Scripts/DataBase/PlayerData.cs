@@ -6,6 +6,8 @@ public class PlayerData
 	
 	public List<string> playerKeys = new List<string>();
 	
+	public string[] misions;
+	public int actualPhotos;
 	public List<string> House = new List<string>();
 	public List<string> Extras = new List<string>();
 	public List<string> Hospital = new List<string>();
@@ -24,6 +26,9 @@ public class PlayerData
 	public PlayerData(Move player)
 	{
 		playerKeys = Globals.playerKeys;
+		misions = Globals.mision;
+		actualPhotos=Globals.actualPhotos;
+		
 		House=Globals.House;
 		Extras = Globals.Extras;
 		Hospital = Globals.Hospital;

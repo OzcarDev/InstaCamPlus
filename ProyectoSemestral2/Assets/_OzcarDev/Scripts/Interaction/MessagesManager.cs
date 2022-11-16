@@ -40,7 +40,8 @@ public class MessagesManager : MonoBehaviour
     }
 
     public void StartDialogue()
-    {
+	{
+		AudioManager.Instance.PlaySFX("Write");
         titleText.text = Globals.currentObject;
         dialogueText.text = string.Empty;
         index = 0;
@@ -53,7 +54,8 @@ public class MessagesManager : MonoBehaviour
 		
         foreach(char letter in Globals.currentContent[index].ToCharArray())
         {
-            dialogueText.text += letter;
+	        dialogueText.text += letter;
+	   
             yield return new WaitForSeconds(textSpeed);
         }
         
@@ -63,6 +65,7 @@ public class MessagesManager : MonoBehaviour
     {
         if (index < Globals.currentContent.Count -1)
         {
+        	AudioManager.Instance.PlaySFX("Write");
             index++;
             dialogueText.text = string.Empty;
             StartCoroutine(WriteLine());

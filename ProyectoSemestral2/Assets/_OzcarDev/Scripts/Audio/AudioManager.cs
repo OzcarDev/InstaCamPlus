@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 	public static AudioManager Instance;
 	public Sound[] musicSounds, sfxSounds;
 	public AudioSource musicSource, sfxSource;
-
+	public Settings settings;
 	private void Awake()
 	{
 		if (Instance == null)
@@ -21,10 +21,19 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	// Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
+	protected void Start()
 	{
 		PlayMusic("theme_1");
 	}
+	// Update is called every frame, if the MonoBehaviour is enabled.
+	protected void Update()
+	{
+		musicSource.volume=settings.musicVolume;
+		sfxSource.volume= settings.sfxVolume;
+	}
+	
+	
 	public void PlayMusic(string name)
 	{
 		Sound s = Array.Find(musicSounds, x => x.name == name);
@@ -36,7 +45,7 @@ public class AudioManager : MonoBehaviour
 		else
 		{
 			musicSource.clip = s.clip;
-			musicSource.volume = s.volume;
+			//musicSource.volume = s.volume*settings.musicVolume;
 			musicSource.Play();
 			musicSource.loop = true;
 		}
@@ -52,7 +61,7 @@ public class AudioManager : MonoBehaviour
 		}
 		else
 		{
-			sfxSource.volume = s.volume;
+			//sfxSource.volume = s.volume*settings.sfxVolume;
 			sfxSource.PlayOneShot(s.clip);
 		}
 	}

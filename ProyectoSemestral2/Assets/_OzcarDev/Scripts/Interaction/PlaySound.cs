@@ -9,4 +9,8 @@ public class PlaySound : MonoBehaviour
 	{
 		AudioManager.Instance.PlaySFX(SoundName);
 	}
+	
+	public void Music(string music){
+		AudioManager.Instance.PlayMusic(music);
+	}
 }

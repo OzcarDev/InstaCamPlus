@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 		messagesManager = GameObject.Find("MessagesManager").GetComponent<MessagesManager>();
 		Load();
 		Draw();
+		AudioManager.Instance.PlayMusic("theme_2");
 		Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
 	{
 		
 		if(Input.GetKeyDown(KeyCode.Q)&&Globals.playerKeys.Contains("PhotoAlbum")) NoteBook();
-		if(Input.GetKeyDown(KeyCode.P)&&Globals.playerKeys.Contains("PhotoAlbum")&&!isPaused&&!readingMode) PhotoAlbum();
+		if(Input.GetKeyDown(KeyCode.F)&&Globals.playerKeys.Contains("PhotoAlbum")&&!isPaused&&!readingMode) PhotoAlbum();
 
         if (Input.GetKeyDown(KeyCode.Escape)) Pause();
 
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour
 		     photoMode = !photoMode;
 		     PhotoMode();
 		     Album.SetActive(false);
+		     AudioManager.Instance.PlaySFX("PhotoAlbum");
 	     } 		else{
 		     
 		     player.gameObject.GetComponentInChildren<Camera>().depth = -1;
@@ -94,6 +96,7 @@ public class GameManager : MonoBehaviour
 		     panelGamePlay.SetActive(false);
 		     panelPhotoMode.SetActive(false);
 		     Album.SetActive(true);
+		     AudioManager.Instance.PlaySFX("PhotoAlbum");
 	     }
 	     photoAlbumMode = !photoAlbumMode;
 	}
@@ -103,15 +106,22 @@ public class GameManager : MonoBehaviour
 		{
 			block.CrossFade("In", .25f);
 			_AnimState = AnimState.Off;
+			AudioManager.Instance.PlaySFX("NoteBook");
 		}
 		else
 		{
 			block.CrossFade("Out", .25f);
 			_AnimState = AnimState.On;
+			AudioManager.Instance.PlaySFX("NoteBook");
 		}
 	}
 	
-	
+	public void newMision(){
+		adviceContent.text = "Objetivo Actualizado \n Presiona \" Esc \" ";
+		advice.StopPlayback();
+		AudioManager.Instance.PlaySFX("Notification");
+		advice.Play("Show");
+	}
 	
 	public void Draw()
 	{
@@ -176,6 +186,9 @@ public class GameManager : MonoBehaviour
 				adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
 				advice.StopPlayback();
 				advice.Play("Show");
+				AudioManager.Instance.PlaySFX("Notification");
+				Globals.actualPhotos++;
+				Debug.Log(Globals.actualPhotos);
 			}
 		}
 		for(int i=0; i < Globals.Station.Count; i++)
@@ -188,6 +201,9 @@ public class GameManager : MonoBehaviour
 				adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
 				advice.StopPlayback();
 				advice.Play("Show");
+				AudioManager.Instance.PlaySFX("Notification");
+				Globals.actualPhotos++;
+				Debug.Log(Globals.actualPhotos);
 			}
 		}
 		for(int i=0; i < Globals.Park.Count; i++)
@@ -200,6 +216,9 @@ public class GameManager : MonoBehaviour
 				adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
 				advice.StopPlayback();
 				advice.Play("Show");
+				AudioManager.Instance.PlaySFX("Notification");
+				Globals.actualPhotos++;
+				Debug.Log(Globals.actualPhotos);
 			}
 		}
 		
@@ -213,6 +232,9 @@ public class GameManager : MonoBehaviour
 				adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
 				advice.StopPlayback();
 				advice.Play("Show");
+				AudioManager.Instance.PlaySFX("Notification");
+				Globals.actualPhotos++;
+				Debug.Log(Globals.actualPhotos);
 			}
 		}
 		
@@ -228,6 +250,9 @@ public class GameManager : MonoBehaviour
 			    adviceContent.text = "Nueva Foto" + " \""+Globals.currentObjective+"\"";
 			    advice.StopPlayback();
 			    advice.Play("Show");
+			    AudioManager.Instance.PlaySFX("Notification");
+			    Globals.actualPhotos++;
+			    Debug.Log(Globals.actualPhotos);
 		    }
 	    }
         
@@ -241,6 +266,9 @@ public class GameManager : MonoBehaviour
 			    adviceContent.text = "Nuevo Secreto" + " \""+Globals.currentObjective+"\"";
 			    advice.StopPlayback();
 			    advice.Play("Show");
+			    AudioManager.Instance.PlaySFX("Notification");
+			    Globals.actualPhotos++;
+			    Debug.Log(Globals.actualPhotos);
 		    }
 	    }
         
@@ -261,7 +289,8 @@ public class GameManager : MonoBehaviour
         else if (!photoMode)
         {
             panelPhotoMode.GetComponent<Animator>().Play("FadeIn");
-            panelGamePlay.SetActive(false);
+	        panelGamePlay.SetActive(false);
+	        AudioManager.Instance.PlaySFX("Object");
             
         }
         photoMode = !photoMode;
@@ -286,8 +315,10 @@ public class GameManager : MonoBehaviour
       
             PlayerData playerData = SaveManager.LoadPlayerData();
 
-            if (playerData == null) return;
+		if (playerData == null) return;
+		Globals.mision = playerData.misions;
 	        Globals.playerKeys=playerData.playerKeys;
+		Globals.actualPhotos=playerData.actualPhotos;
 		
 		Globals.House = playerData.House;
 		Globals.Extras = playerData.Extras;

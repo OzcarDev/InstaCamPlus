@@ -3,14 +3,16 @@ using System.Collections.Generic;
 public class Globals 
 {
   
+	public static int totalPhotos=10;
+	public static int actualPhotos;
   public static List<string> playerKeys = new List<string>();
   public static List<string> currentContent = new List<string>();
   public static string currentObject;
   public static string currentObjective;
-
+	public static string[] mision = new string[]{"",""};
 
 	public static List<string> House = new List<string>() 
-    { 
+	{ 
 	    "Batería","Pecera","Ajedrez","Pastel de cumpleaños","Pato Amarillo","Carrito","Moto Sierra"    
     
     };

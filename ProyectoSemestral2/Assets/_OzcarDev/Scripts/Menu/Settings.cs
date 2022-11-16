@@ -22,6 +22,20 @@ public class Settings : ScriptableObject
 		mouseSensitivity = value;
 	}
 	
+	public void SetMusicVolume(float value){
+		musicVolume = value;
+		
+	}
+	
+	public void SetSFXVolume(float value){
+		sfxVolume=value;
+		 
+	}
+	
+	public void SetFullscreen(bool value){
+		isFullScreen = value;
+	}
+	
 	public void Get(){
 		
 	}

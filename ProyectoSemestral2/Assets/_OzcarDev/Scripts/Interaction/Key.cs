@@ -10,8 +10,12 @@ public class Key : MonoBehaviour
 	 void Update()
 	{
 		if(Globals.playerKeys.Contains(keyID)){
+			Debug.Log("Desactivado");
+			gameObject.SetActive(false);
 			
-			Destroy(this.gameObject);
-		}	
+			//Destroy(this.gameObject);
+		}	else{
+			gameObject.SetActive(true);
+		}
 	}
 }

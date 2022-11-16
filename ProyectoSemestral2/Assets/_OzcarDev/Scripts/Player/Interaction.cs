@@ -80,6 +80,9 @@ namespace com.OzcarDev.WalkingSim
 
            if (Input.GetButtonDown("Interaction") && !gameManager.readingMode&&!gameManager.photoMode)
            {
+	           if(hit.transform.gameObject.GetComponent<LastMision>()!=null){
+	           	hit.transform.gameObject.GetComponent<LastMision>().LastMission();
+	           }
                     if(hit.transform.gameObject.GetComponent<PlayAnim>()!=null) hit.transform.gameObject.GetComponent<PlayAnim>().PlayAnimation();
                     if (hit.transform.gameObject.GetComponent<Letter>() != null)
                     {
@@ -94,16 +97,24 @@ namespace com.OzcarDev.WalkingSim
                         
                     }
                     
-	           if (hit.transform.gameObject.GetComponent<PlaySound>() != null)
-	           {
-		           hit.transform.gameObject.GetComponent<PlaySound>().Sound();
+	        		if (hit.transform.gameObject.GetComponent<PlaySound>() != null)
+	        		{
+		        		hit.transform.gameObject.GetComponent<PlaySound>().Sound();
                         
-	           }
+	        		}
                     
-	           if(hit.transform.gameObject.GetComponent<NPC>()!=null)
-	           {
-		           hit.transform.gameObject.GetComponent<NPC>().LookAtMe();	
+	        		if(hit.transform.gameObject.GetComponent<NPC>()!=null)
+	        		{
+		        		hit.transform.gameObject.GetComponent<NPC>().LookAtMe();	
+	        		}
+	        		
+	           if(hit.transform.gameObject.GetComponent<NewMission>()!=null){
+		           Globals.mision=hit.transform.gameObject.GetComponent<NewMission>().newMission;
+		           hit.transform.gameObject.GetComponent<NewMission>().Mision();
+		           gameManager.newMision();
 	           }
+	        		
+	           
            }
 
             }

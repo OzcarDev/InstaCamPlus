@@ -9,7 +9,16 @@ public class  InteractMenu: MonoBehaviour,IPointerEnterHandler, IPointerExitHand
 	public float obset;
 	private float inicialPosition;
 	public int index;
-	public bool isPhotocard;
+	public enum Type
+	{
+		PhotoCard,
+		Icon,
+		NextButton,
+		PrevButton
+	}
+	
+	public Type type;
+	
 	PhotoAlbumManager manager;
 	
 	// Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
@@ -38,15 +47,25 @@ public class  InteractMenu: MonoBehaviour,IPointerEnterHandler, IPointerExitHand
 	
 	public void OnPointerDown(PointerEventData pointerEventData)
 	{
-		if(isPhotocard)
-		{
-			
-			
+		
+		
+		switch(type){
+		case Type.PhotoCard:
+			break;
+		case Type.Icon:
+			AudioManager.Instance.PlaySFX("ButtonClicked");
+			manager.ChangePage(index);
+			break;
+		case Type.NextButton:
+			AudioManager.Instance.PlaySFX("ButtonClicked");
+			manager.NextPage();
+			break;
+		case Type.PrevButton:
+			AudioManager.Instance.PlaySFX("ButtonClicked");
+			manager.PrevPage();
+			break;
 		}
 		
-		else{
-			manager.ChangePage(index);
-		}
 	}
 	
 	
