@@ -32,7 +32,7 @@ public class PlayAnim : MonoBehaviour
 
         if (StateA != "" && StateB != "")
         {
-            if (Globals.playerKeys.Contains(keyRequirement))
+	        if (Globals.Instance.playerKeys.Contains(keyRequirement))
             {
                 if (_AnimState == AnimState.On)
                 {
@@ -49,8 +49,8 @@ public class PlayAnim : MonoBehaviour
             }
             else
             {
-                Globals.currentContent = GetComponent<Door>().closeMessage;
-                Globals.currentObject = "...";
+	            Globals.Instance.currentContent = GetComponent<Door>().closeMessage;
+	            Globals.Instance.currentObject = "...";
                 gameManager.ReadingMode();
                 
             }

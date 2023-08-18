@@ -25,7 +25,7 @@ public class PhotoAlbumManager : MonoBehaviour
 				pages[i].SetActive(true);
 				pageText.text = (page+1) + "/"+(pages.Length);
 				
-				PhotosPercent.text = ((Globals.actualPhotos*100)/Globals.totalPhotos)+"%";
+				PhotosPercent.text = ((Globals.Instance.actualPhotos*100)/Globals.Instance.totalPhotos)+"%";
 			}
 			else{
 				pages[i].SetActive(false);

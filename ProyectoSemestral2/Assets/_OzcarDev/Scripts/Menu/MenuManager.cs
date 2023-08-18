@@ -14,6 +14,19 @@ public class MenuManager : MonoBehaviour
 	[SerializeField] Settings MySettings;	
 	[SerializeField] TextMeshProUGUI misionTitle;
 	[SerializeField] TextMeshProUGUI mision;
+	[SerializeField] GameObject newGameButton;
+	
+	// Update is called every frame, if the MonoBehaviour is enabled.
+	protected void Update()
+	{
+		if(newGameButton==null)return;
+		PlayerData playerData = SaveManager.LoadPlayerData();
+		if(playerData==null){
+			newGameButton.SetActive(false);
+		}else{
+			newGameButton.SetActive(true);
+		}
+	}
 	// Awake is called when the script instance is being loaded.
 	protected void Start()
 	{
@@ -29,8 +42,8 @@ public class MenuManager : MonoBehaviour
 	{
 		Cursor.lockState = CursorLockMode.None;
 		if(mision==null)return;
-		misionTitle.text = Globals.mision[0];
-		mision.text = Globals.mision[1];
+		misionTitle.text = Globals.Instance.mision[0];
+		mision.text = Globals.Instance.mision[1];
 	}
 	// This function is called when the behaviour becomes disabled () or inactive.
 	protected void OnDisable()
@@ -41,6 +54,7 @@ public class MenuManager : MonoBehaviour
 	public void NewGame(string scene){
 		SaveManager.DeletePlayerData();
 		SceneManagerNextScene(scene);
+		Cursor.lockState=CursorLockMode.Locked;
 		//Globals.Restart();
 	}
 	
@@ -50,6 +64,7 @@ public class MenuManager : MonoBehaviour
 	
 	public void SceneManagerNextScene(string scene){
 		LoadScene.Instance.LoadNextScene(scene);
+		Cursor.lockState=CursorLockMode.Locked;
 	}
 	
 	public void SetFullscreen(){

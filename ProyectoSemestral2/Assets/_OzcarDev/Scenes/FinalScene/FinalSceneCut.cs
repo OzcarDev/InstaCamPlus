@@ -12,7 +12,7 @@ public class FinalSceneCut : MonoBehaviour
     }
 
 	IEnumerator Siguiente(){
-		yield return new WaitForSeconds(10f);
+		yield return new WaitForSeconds(6f);
 		LoadScene.Instance.LoadNextScene("Credits");
 	}
 }

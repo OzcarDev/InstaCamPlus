@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
 	Transform target;
-   
+	public string animationName;
 	GameManager gameManager;
 	bool rotate = false;
 	public bool Sit;
@@ -16,7 +16,7 @@ public class NPC : MonoBehaviour
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		target = GameObject.FindGameObjectWithTag("Player").transform;
 		if(Sit){
-			gameObject.GetComponent<Animator>().Play("Sit");
+			gameObject.GetComponent<Animator>().Play(animationName);
 		}
 		
 	}
@@ -28,10 +28,7 @@ public class NPC : MonoBehaviour
 		if(!gameManager.readingMode)
 		{
 			rotate = false;
-			if(Sit){	
-				
-				gameObject.GetComponent<Animator>().CrossFade("Sit",0.3f);
-			}
+			
 		}
 		
 		if(rotate) {

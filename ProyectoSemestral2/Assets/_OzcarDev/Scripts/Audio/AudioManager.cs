@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
 	// Update is called every frame, if the MonoBehaviour is enabled.
 	protected void Update()
 	{
-		musicSource.volume=settings.musicVolume;
+		musicSource.volume=settings.musicVolume*0.3f;
 		sfxSource.volume= settings.sfxVolume;
 	}
 	

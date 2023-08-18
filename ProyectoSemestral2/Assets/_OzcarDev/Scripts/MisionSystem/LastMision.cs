@@ -25,11 +25,11 @@ public class LastMision : MonoBehaviour
   
 	public void LastMission()
     {
-	    if(Globals.actualPhotos >=5){
+	    if(Globals.Instance.actualPhotos >=78){
 	    	dialogue.content.Clear();
 	    	gameManager.Save();
-	    	dialogue.content.Add("Así que ya tienes las 50 fotos");
-	    	dialogue.content.Add("Dejame revisar lo que tienes y te dire si te contratamos otra vez o no");
+	    	dialogue.content.Add("Así que ya tienes la mitad del álbum...");
+	    	dialogue.content.Add("Dejame revisar lo que tienes y te dire si te doy otra oportunidad o no.");
 	    	StartCoroutine(Wait());
 	    } 
 	    

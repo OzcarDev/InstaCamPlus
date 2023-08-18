@@ -33,7 +33,7 @@ public class Credits: MonoBehaviour
 	}
     
 	void Ending(){
-		if(Globals.actualPhotos>=Globals.totalPhotos){
+		if(Globals.Instance.actualPhotos>=Globals.Instance.totalPhotos){
 			text.text = "Fotógrafo local gana premio de fotografía nacional";
 		} else {
 			text.text = "Fotógrafo local muere de hambre";

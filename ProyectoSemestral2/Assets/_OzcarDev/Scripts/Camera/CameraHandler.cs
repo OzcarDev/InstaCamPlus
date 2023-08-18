@@ -14,7 +14,7 @@ public class CameraHandler : MonoBehaviour
     }
     void Update()
     {
-	    if (Input.GetButtonDown("Shot")&&gameManager.photoMode&&!gameManager.isPaused&&!gameManager.readingMode&&Globals.playerKeys.Contains("Camera")&&!gameManager.photoAlbumMode&&canTakePhoto)
+	    if (Input.GetButtonDown("Shot")&&gameManager.photoMode&&!gameManager.isPaused&&!gameManager.readingMode&&Globals.Instance.playerKeys.Contains("Camera")&&!gameManager.photoAlbumMode&&canTakePhoto)
 	    { 
 		    canTakePhoto=false;
 		    Cam.TakeScreenshot();

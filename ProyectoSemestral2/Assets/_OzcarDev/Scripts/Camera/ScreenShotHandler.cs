@@ -34,9 +34,9 @@ public class ScreenShotHandler : MonoBehaviour
 		screenshotTexture.Apply();
 		
 		byte[] byteArray = screenshotTexture.EncodeToPNG();
-		System.IO.File.WriteAllBytes(Application.persistentDataPath +"/fotos/"+"_"+Globals.currentObjective+".png", byteArray);
+		System.IO.File.WriteAllBytes(Application.persistentDataPath +"/fotos/"+"_"+Globals.Instance.currentObjective+".png", byteArray);
 		Debug.Log("Screenshot");
-		if(Globals.playerKeys.Contains("PhotoAlbum"))
+		if(Globals.Instance.playerKeys.Contains("PhotoAlbum"))
 		{
 			
 			gameManager.ToDoList();

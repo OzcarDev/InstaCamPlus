@@ -177,13 +177,13 @@ MonoBehaviour:
   musicSounds:
   - name: theme_1
     clip: {fileID: 8300000, guid: d762bc1cd25ad4f4e9353a19508934ca, type: 3}
-    volume: 1
+    volume: 0.5
   - name: theme_2
     clip: {fileID: 8300000, guid: 9e58a5db06f94764499b204d014941cd, type: 3}
-    volume: 1
+    volume: 0.5
   - name: theme_3
     clip: {fileID: 8300000, guid: cafa27a9921d2674ab158bb466413384, type: 3}
-    volume: 1
+    volume: 0.5
   sfxSounds:
   - name: open
     clip: {fileID: 8300000, guid: 68c61502479e60d4fa26edde795e8969, type: 3}
@@ -217,7 +217,7 @@ MonoBehaviour:
     volume: 1
   - name: Wc
     clip: {fileID: 8300000, guid: d4682bf183dd06142b75342878e65352, type: 3}
-    volume: 1
+    volume: 0.56
   - name: Duck
     clip: {fileID: 8300000, guid: f819b2f4e2e4ec143bccda31e5e5540e, type: 3}
     volume: 1
@@ -229,7 +229,7 @@ MonoBehaviour:
     volume: 1
   - name: Blender
     clip: {fileID: 8300000, guid: 1718a8160b368ce41843c68ca007ee53, type: 3}
-    volume: 1
+    volume: 0.565
   - name: Saw
     clip: {fileID: 8300000, guid: 0221d715cb8b6bc42bc857bc7945d618, type: 3}
     volume: 1
@@ -280,6 +280,72 @@ MonoBehaviour:
     volume: 1
   - name: Write
     clip: {fileID: 8300000, guid: 7de6e5039e69ac64d9e78d30c4d8f3be, type: 3}
+    volume: 1
+  - name: footstep0
+    clip: {fileID: 8300000, guid: 0582ee9851d94574dba04cbc71393264, type: 3}
+    volume: 1
+  - name: footstep1
+    clip: {fileID: 8300000, guid: 61aefb7ea04da4140942730349b4ec3f, type: 3}
+    volume: 1
+  - name: footstep2
+    clip: {fileID: 8300000, guid: 2fa4669761d5aea409a2d6bc31e39e4d, type: 3}
+    volume: 1
+  - name: footstep3
+    clip: {fileID: 8300000, guid: c29ba1626a03d3244b277628fcd903fc, type: 3}
+    volume: 1
+  - name: footstep4
+    clip: {fileID: 8300000, guid: 9bf042e64f0393c44a89d1141675aeaa, type: 3}
+    volume: 1
+  - name: footstep5
+    clip: {fileID: 8300000, guid: 4d26898afc01d114ba1da8e927a01abd, type: 3}
+    volume: 1
+  - name: footstep6
+    clip: {fileID: 8300000, guid: 0ccf858e4c735b5459fb44e1250a7949, type: 3}
+    volume: 1
+  - name: footstep7
+    clip: {fileID: 8300000, guid: 5b3a754436b970947b5643cd5342f535, type: 3}
+    volume: 1
+  - name: footstep8
+    clip: {fileID: 8300000, guid: c82369dec240897468ebec438322baac, type: 3}
+    volume: 1
+  - name: footstep9
+    clip: {fileID: 8300000, guid: e46b3892e10f40848bcbce9db2125efe, type: 3}
+    volume: 1
+  - name: footstep10
+    clip: {fileID: 8300000, guid: 53d6254741a6a844992f6e482fc1de28, type: 3}
+    volume: 1
+  - name: Wings
+    clip: {fileID: 8300000, guid: d6d7fe096e85fa74086e71641050f908, type: 3}
+    volume: 1
+  - name: Bird
+    clip: {fileID: 8300000, guid: 339f260981ae16a4bb8218f12aff179b, type: 3}
+    volume: 1
+  - name: Dolphin
+    clip: {fileID: 8300000, guid: b2711b52348c35242901dcb900b049ab, type: 3}
+    volume: 1
+  - name: Eagle
+    clip: {fileID: 8300000, guid: 74b937f450afae24bb2a71d133292b75, type: 3}
+    volume: 1
+  - name: Tiger
+    clip: {fileID: 8300000, guid: b84c79b6ac2e7e64d83d10071ab9d2fa, type: 3}
+    volume: 1
+  - name: Crow
+    clip: {fileID: 8300000, guid: f7b0ebfcb6eee1047a796fe18435ac94, type: 3}
+    volume: 1
+  - name: Frog
+    clip: {fileID: 8300000, guid: 9d08c027edfcfcc418d2d3cada0dc942, type: 3}
+    volume: 1
+  - name: Owl
+    clip: {fileID: 8300000, guid: f1333eb13dcdc5c479f1e0437381708a, type: 3}
+    volume: 1
+  - name: Cow
+    clip: {fileID: 8300000, guid: fa946036cc52b2740abf69e5c1162700, type: 3}
+    volume: 1
+  - name: Snake
+    clip: {fileID: 8300000, guid: 489f503aba076204a8d627b966e6fe59, type: 3}
+    volume: 1
+  - name: Pig
+    clip: {fileID: 8300000, guid: b12eb3ce416b605468b0096c0bac1b5d, type: 3}
     volume: 1
   musicSource: {fileID: 1993132451526135709}
   sfxSource: {fileID: 1993132452411597233}

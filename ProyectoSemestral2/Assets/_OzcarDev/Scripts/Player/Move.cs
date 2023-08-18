@@ -40,12 +40,15 @@ using UnityEngine;
         public State _State;
 
 	    private bool isTeleporting=false;
-	   
+	    
+	    private bool nextStep = true;
+	    public float stepDuration;
+	    private int stepindex;
         void Start()
 	    {
 	    	
 		    rigidbody = GetComponent<Rigidbody>();
-            Globals.playerKeys.Add("");
+            Globals.Instance.playerKeys.Add("");
             speed = maxSpeed;
             _State = State.Normal;
             gameManager = GameObject.Find("GameManager").GetComponent <GameManager> ();
@@ -111,14 +114,37 @@ using UnityEngine;
             dir.x = x;
 		    dir.z = z;
 		   
-			    
+			 
 		    var  movePlayer = dir.normalized.x * cam.right+ dir.normalized.z*transform.forward; 
             var gravity = Vector3.down * Time.deltaTime * gravityForce;
 		    characterController.Move( (movePlayer* Time.deltaTime * speed)+gravity);
-            
+		   
+		    if((dir.x!=0||dir.z!=0)&&nextStep){
+		    	StartCoroutine(Step());
+		    }
 		    
+		    if(Input.GetKey(KeyCode.LeftShift)&&_State == State.Normal){
+		    	speed = 8;
+		    	stepDuration = 0.25f;
+		    }
+		  
+		    if(Input.GetKeyUp(KeyCode.LeftShift)&&_State==State.Normal){
+		    	speed = maxSpeed;
+		    	stepDuration = 0.4f;
+		    }
             
-        }
+	    }
+        
+	    IEnumerator Step(){
+	    	nextStep = false;
+	    	stepindex = Random.Range(0,10);
+	    	AudioManager.Instance.PlaySFX("footstep"+stepindex);
+	    	yield return new WaitForSeconds(stepDuration);
+	    	
+	    	nextStep = true;
+	    	
+	    	
+	    }
 
         private Coroutine CrouchCoroutine;
         void Crouch()
@@ -128,14 +154,16 @@ using UnityEngine;
                 switch (_State)
                 {
                     case State.Normal:
-                        _State = State.Crouching;
+	                    _State = State.Crouching;
+	                    stepDuration = 0.8f;
                         speed = crouchSpeed;
                         CrouchCoroutine=StartCoroutine(Crouching(normalScale, crouchScale));
                         
                         break;
 
                     case State.Crouching:
-                        _State = State.Ground;
+	                    _State = State.Ground;
+	                    stepDuration = 1.2f;
                         speed = groundSpeed;
                         CrouchCoroutine = StartCoroutine(Crouching(crouchScale, lieScale));
 
@@ -143,13 +171,15 @@ using UnityEngine;
 
                     case State.Ground:
                         _State = State.Normal;
-                        speed = maxSpeed;
+	                    speed = maxSpeed;
+	                    stepDuration = 0.4f;
                         CrouchCoroutine = StartCoroutine(Crouching(lieScale, normalScale));
 
                         break;
 
                     default:
-                        _State = State.Normal;
+	                    _State = State.Normal;
+	                    stepDuration = 0.4f;
                         speed = maxSpeed;
                         CrouchCoroutine = StartCoroutine(Crouching(lieScale, normalScale));
                         break;

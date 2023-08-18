@@ -9,7 +9,7 @@ public class CheckKey : MonoBehaviour
 	// This function is called when the object becomes enabled and active.
 	protected void OnEnable()
 	{
-		if(Globals.playerKeys.Contains(id)){
+		if(Globals.Instance.playerKeys.Contains(id)){
 			key.SetActive(true);
 		}
 		else{

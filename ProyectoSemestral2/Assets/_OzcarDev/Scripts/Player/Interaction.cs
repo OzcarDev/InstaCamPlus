@@ -35,13 +35,13 @@ namespace com.OzcarDev.WalkingSim
 		var ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f));
 		if (Physics.Raycast(ray, out hit, 100,layerMask))
 		{
-			if(hit.transform.gameObject.tag== "Photo"||hit.transform.gameObject.tag== "Interaction"){
+			if(hit.transform.gameObject.tag== "Photo"){
 				
 
 				gameManager.lens.GetComponent<Animator>().Play("bigCursor");
 				cameraObjectText.text = hit.transform.gameObject.name;
 			
-				Globals.currentObjective = hit.transform.gameObject.name;
+				Globals.Instance.currentObjective = hit.transform.gameObject.name;
 
 			   
 
@@ -52,7 +52,7 @@ namespace com.OzcarDev.WalkingSim
 				gameManager.lens.GetComponent<Animator>().Play("normalCursor");
 				cameraObjectText.text = "";
 			
-				Globals.currentObjective = null;
+				Globals.Instance.currentObjective = null;
 			}
        
 		} else
@@ -60,7 +60,7 @@ namespace com.OzcarDev.WalkingSim
 			gameManager.lens.GetComponent<Animator>().Play("normalCursor");
 			cameraObjectText.text = "";
 			
-			Globals.currentObjective = null;
+			Globals.Instance.currentObjective = null;
 		}
 	}
        
@@ -76,7 +76,7 @@ namespace com.OzcarDev.WalkingSim
                 gameManager.panelGamePlay.GetComponent<Animator>().Play("bigCursor");
 	       	objectText.text = hit.transform.gameObject.name;
 	       	objectText2.text = hit.transform.gameObject.name;
-                Globals.currentObjective = hit.transform.gameObject.name;
+                Globals.Instance.currentObjective = hit.transform.gameObject.name;
 
            if (Input.GetButtonDown("Interaction") && !gameManager.readingMode&&!gameManager.photoMode)
            {
@@ -86,13 +86,13 @@ namespace com.OzcarDev.WalkingSim
                     if(hit.transform.gameObject.GetComponent<PlayAnim>()!=null) hit.transform.gameObject.GetComponent<PlayAnim>().PlayAnimation();
                     if (hit.transform.gameObject.GetComponent<Letter>() != null)
                     {
-                        Globals.currentContent = hit.transform.gameObject.GetComponent<Letter>().content;
-                        Globals.currentObject = hit.transform.gameObject.GetComponent<Letter>().objectName;
+                        Globals.Instance.currentContent = hit.transform.gameObject.GetComponent<Letter>().content;
+                        Globals.Instance.currentObject = hit.transform.gameObject.GetComponent<Letter>().objectName;
                         gameManager.ReadingMode();
                     }
                     if (hit.transform.gameObject.GetComponent<Key>() != null)
                     {
-                        Globals.playerKeys.Add(hit.transform.gameObject.GetComponent<Key>().keyID);
+                        Globals.Instance.playerKeys.Add(hit.transform.gameObject.GetComponent<Key>().keyID);
                         Destroy(hit.transform.gameObject);
                         
                     }
@@ -109,7 +109,7 @@ namespace com.OzcarDev.WalkingSim
 	        		}
 	        		
 	           if(hit.transform.gameObject.GetComponent<NewMission>()!=null){
-		           Globals.mision=hit.transform.gameObject.GetComponent<NewMission>().newMission;
+		           Globals.Instance.mision=hit.transform.gameObject.GetComponent<NewMission>().newMission;
 		           hit.transform.gameObject.GetComponent<NewMission>().Mision();
 		           gameManager.newMision();
 	           }
@@ -124,7 +124,7 @@ namespace com.OzcarDev.WalkingSim
                 gameManager.panelGamePlay.GetComponent<Animator>().Play("normalCursor");
 	            objectText.text = "";
 	            objectText2.text = "";
-                Globals.currentObjective = null;
+                Globals.Instance.currentObjective = null;
             }
        
        } else
@@ -132,7 +132,7 @@ namespace com.OzcarDev.WalkingSim
 	       gameManager.panelGamePlay.GetComponent<Animator>().Play("normalCursor");
 	       objectText.text = "";
 	       objectText2.text = "";
-	       Globals.currentObjective = null;
+	       Globals.Instance.currentObjective = null;
        }
             
     }

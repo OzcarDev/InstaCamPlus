@@ -9,7 +9,7 @@ public class Key : MonoBehaviour
 	// Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
 	 void Update()
 	{
-		if(Globals.playerKeys.Contains(keyID)){
+		if(Globals.Instance.playerKeys.Contains(keyID)){
 			Debug.Log("Desactivado");
 			gameObject.SetActive(false);
 			

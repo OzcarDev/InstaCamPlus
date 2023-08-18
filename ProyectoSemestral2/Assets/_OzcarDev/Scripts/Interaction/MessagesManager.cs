@@ -25,14 +25,14 @@ public class MessagesManager : MonoBehaviour
         {
             if (Input.GetButtonDown("Interaction"))
             {
-                if (dialogueText.text == Globals.currentContent[index])
+	            if (dialogueText.text == Globals.Instance.currentContent[index])
                 {
                     NextLine();
                 }
                 else if(dialogueText.text.Length>1)
                 {
 	                StopAllCoroutines();
-	                 dialogueText.text = Globals.currentContent[index];
+	                dialogueText.text = Globals.Instance.currentContent[index];
                 }
             }
         }
@@ -42,7 +42,7 @@ public class MessagesManager : MonoBehaviour
     public void StartDialogue()
 	{
 		AudioManager.Instance.PlaySFX("Write");
-        titleText.text = Globals.currentObject;
+		titleText.text = Globals.Instance.currentObject;
         dialogueText.text = string.Empty;
         index = 0;
         StartCoroutine(WriteLine());
@@ -52,7 +52,7 @@ public class MessagesManager : MonoBehaviour
     IEnumerator WriteLine()
 	{
 		
-        foreach(char letter in Globals.currentContent[index].ToCharArray())
+		foreach(char letter in Globals.Instance.currentContent[index].ToCharArray())
         {
 	        dialogueText.text += letter;
 	   
@@ -63,7 +63,7 @@ public class MessagesManager : MonoBehaviour
 
     public void NextLine()
     {
-        if (index < Globals.currentContent.Count -1)
+        if (index < Globals.Instance.currentContent.Count -1)
         {
         	AudioManager.Instance.PlaySFX("Write");
             index++;
